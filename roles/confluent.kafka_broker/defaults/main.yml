@@ -23,7 +23,7 @@ kafka_broker_service_overrides:
 
 # Key/Value Pairs with empty values will not be written into override.conf
 kafka_broker_service_environment_overrides:
-  KAFKA_HEAP_OPTS: "-Xms6g -Xmx6g -XX:MetaspaceSize=96m -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35 -XX:G1HeapRegionSize=16M -XX:MinMetaspaceFreeRatio=50 -XX:MaxMetaspaceFreeRatio=80"
+  KAFKA_HEAP_OPTS: "-Xms8g -Xmx8g -XX:+UnlockDiagnosticVMOptions -XX:+DebugNonSafepoints -XX:MetaspaceSize=96m -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35 -XX:G1HeapRegionSize=16M -XX:MinMetaspaceFreeRatio=50 -XX:MaxMetaspaceFreeRatio=80"
   KAFKA_OPTS: "{{ kafka_broker_final_java_args | java_arg_build_out }}"
   # Remove trailing slash if there is one
   LOG_DIR: "{{ kafka_broker_log_dir|regex_replace('\\/$', '') if kafka_broker_log_dir|regex_replace('\\/$', '') != kafka_broker_default_log_dir else '' }}"
